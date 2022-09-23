@@ -52,4 +52,11 @@ public class PersonDao {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM person WHERE id=?", id);
     }
+
+    public Optional<Person> findPersonByFullName(String fullName) {
+        return jdbcTemplate.query("SELECT * FROM person WHERE fullname=?",
+                new Object[]{fullName},
+                new BeanPropertyRowMapper<>(Person.class))
+                .stream().findAny();
+    }
 }

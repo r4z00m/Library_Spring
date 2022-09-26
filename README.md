@@ -1,2 +1,2 @@
 # Library_Spring
-Simble WebApp for Library management
+Stack: Spring, PostgreSQL, Maven, JDBC, JdbcTemplate, CRUD, Thymeleaf, HTML

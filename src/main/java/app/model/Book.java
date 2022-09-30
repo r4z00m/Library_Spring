@@ -1,32 +1,36 @@
 package app.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "book")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private Integer person_id;
 
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
+
+    @Column(name = "name")
     @NotEmpty(message = "Заполните поле!")
     private String name;
 
+    @Column(name = "author")
     @NotEmpty(message = "Заполните поле!")
     private String author;
 
+    @Column(name = "year")
     @Min(value = 0, message = "Введите корректный год!")
     @NotNull(message = "Заполните поле!")
     private int year;
 
     public Book() {}
-
-    public Book(int id, Integer person_id, String name, String author, int year) {
-        this.id = id;
-        this.person_id = person_id;
-        this.name = name;
-        this.author = author;
-        this.year = year;
-    }
 
     public int getId() {
         return id;
@@ -36,12 +40,12 @@ public class Book {
         this.id = id;
     }
 
-    public Integer getPerson_id() {
-        return person_id;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPerson_id(Integer person_id) {
-        this.person_id = person_id;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getName() {

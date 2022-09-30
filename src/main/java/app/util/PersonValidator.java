@@ -1,7 +1,8 @@
 package app.util;
 
-import app.dao.PersonDao;
 import app.model.Person;
+import app.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -11,10 +12,11 @@ import java.util.Optional;
 @Component
 public class PersonValidator implements Validator {
 
-    private final PersonDao personDao;
+    private final PersonService personService;
 
-    public PersonValidator(PersonDao personDao) {
-        this.personDao = personDao;
+    @Autowired
+    public PersonValidator(PersonService personService) {
+        this.personService = personService;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        Optional<Person> optional = personDao.findPersonByFullName(person.getFullName());
+        Optional<Person> optional = personService.findPersonByFullName(person.getFullName());
         if (optional.isPresent()) {
             if (person.getFullName().equals(optional.get().getFullName())) {
                 errors.rejectValue("fullName", "", "Такой ФИО уже есть в базе!");

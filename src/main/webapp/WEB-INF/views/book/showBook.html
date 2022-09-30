@@ -7,8 +7,8 @@
 <body>
 <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></p>
 
-<p th:if="${book.getPerson_id() == null}" th:text="'Эта книга свободна. Кому назначить ее?'"></p>
-<form th:if="${book.getPerson_id() == null}" th:method="POST" th:action="@{/books/{id}/addBookToPerson (id=*{book.getId()})}">
+<p th:if="${book.getPerson() == null}" th:text="'Эта книга свободна. Кому назначить ее?'"></p>
+<form th:if="${book.getPerson() == null}" th:method="POST" th:action="@{/books/{id}/addBookToPerson (id=*{book.getId()})}">
     <label for="options" th:text="'Выберите человека'" ></label>
     <select id="options" th:object="${person}" th:field="*{id}">
         <option th:each="person : ${people}" th:value="${person.getId()}"
@@ -17,8 +17,8 @@
     <input type="submit" value="Назначить книгу">
 </form>
 
-<p th:if="${book.getPerson_id() != null}" th:text="'Книга сейчас у: ' + *{bookHolder.getFullName()}"></p>
-<form th:if="${book.getPerson_id() != null}" th:method="POST" th:action="@{/books/{id}/free (id=*{book.getId()})}">
+<p th:if="${book.getPerson() != null}" th:text="'Книга сейчас у: ' + *{bookHolder.getFullName()}"></p>
+<form th:if="${book.getPerson() != null}" th:method="POST" th:action="@{/books/{id}/free (id=*{book.getId()})}">
     <input type="submit" value="Освободить книгу">
 </form>
 <hr/>

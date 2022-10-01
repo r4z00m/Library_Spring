@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "book")
@@ -29,6 +30,13 @@ public class Book {
     @Min(value = 0, message = "Введите корректный год!")
     @NotNull(message = "Заполните поле!")
     private int year;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "taken_at")
+    private Date takenAt;
+
+    @Transient
+    private boolean isExpired;
 
     public Book() {}
 
@@ -70,5 +78,21 @@ public class Book {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public Date getTakenAt() {
+        return takenAt;
+    }
+
+    public void setTakenAt(Date takenAt) {
+        this.takenAt = takenAt;
+    }
+
+    public boolean isExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(boolean expired) {
+        isExpired = expired;
     }
 }

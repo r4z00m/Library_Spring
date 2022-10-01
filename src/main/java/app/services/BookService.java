@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,7 @@ public class BookService {
         Hibernate.initialize(old.getPerson());
         if (old.getPerson() != null) {
             book.setPerson(old.getPerson());
+            book.setTakenAt(old.getTakenAt());
         }
         book.setId(id);
         bookRepository.save(book);
@@ -74,6 +76,7 @@ public class BookService {
         Optional<Book> book = bookRepository.findById(book_id);
         Optional<Person> person = personRepository.findById(person_id);
         if (book.isPresent() && person.isPresent()) {
+            book.get().setTakenAt(new Date());
             book.get().setPerson(person.get());
             person.get().getBooks().add(book.get());
         }
@@ -83,6 +86,8 @@ public class BookService {
     public void freeBook(int id) {
         Book book = bookRepository.findById(id).get();
         book.setPerson(null);
+        book.setTakenAt(null);
+        book.setExpired(false);
         bookRepository.save(book);
     }
 

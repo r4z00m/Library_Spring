@@ -1,7 +1,7 @@
 package app.services;
 
-import app.model.Book;
-import app.model.Person;
+import app.models.Book;
+import app.models.Person;
 import app.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

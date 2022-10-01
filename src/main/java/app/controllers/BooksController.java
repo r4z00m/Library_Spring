@@ -1,7 +1,7 @@
-package app.controller;
+package app.controllers;
 
-import app.model.Book;
-import app.model.Person;
+import app.models.Book;
+import app.models.Person;
 import app.services.BookService;
 import app.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;

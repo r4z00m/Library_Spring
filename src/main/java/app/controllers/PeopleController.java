@@ -1,8 +1,8 @@
-package app.controller;
+package app.controllers;
 
-import app.model.Person;
+import app.models.Person;
 import app.services.PersonService;
-import app.util.PersonValidator;
+import app.utils.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

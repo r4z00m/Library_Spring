@@ -1,6 +1,6 @@
-package app.util;
+package app.utils;
 
-import app.model.Person;
+import app.models.Person;
 import app.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

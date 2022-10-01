@@ -1,6 +1,6 @@
 package app.repositories;
 
-import app.model.Book;
+import app.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

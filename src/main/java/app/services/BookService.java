@@ -85,4 +85,8 @@ public class BookService {
         book.setPerson(null);
         bookRepository.save(book);
     }
+
+    public List<Book> findByStart(String to_find) {
+        return bookRepository.findAllByNameStartingWith(to_find);
+    }
 }

@@ -39,30 +39,13 @@ public class BooksController {
         return "book/addBook";
     }
 
-    @PostMapping()
+    @PostMapping("/new")
     public String addBook(@ModelAttribute("book") @Valid Book book,
                           BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "book/addBook";
         }
         bookService.save(book);
-        return "redirect:/books";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String updateBook(Model model, @PathVariable("id") int id) {
-        model.addAttribute("book", bookService.findById(id).get());
-        return "book/editBook";
-    }
-
-    @PostMapping("/{id}")
-    public String updateBook(@ModelAttribute("book") @Valid Book book,
-                             BindingResult bindingResult,
-                             @PathVariable("id") int id) {
-        if (bindingResult.hasErrors()) {
-            return "book/editBook";
-        }
-        bookService.update(id, book);
         return "redirect:/books";
     }
 
@@ -77,6 +60,23 @@ public class BooksController {
         model.addAttribute("book", book);
         model.addAttribute("people", personService.readPeople());
         return "book/showBook";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editBook(Model model, @PathVariable("id") int id) {
+        model.addAttribute("book", bookService.findById(id).get());
+        return "book/editBook";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editBook(@ModelAttribute("book") @Valid Book book,
+                             BindingResult bindingResult,
+                             @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) {
+            return "book/editBook";
+        }
+        bookService.update(id, book);
+        return "redirect:/books";
     }
 
     @PostMapping("/{id}/delete")
@@ -104,8 +104,9 @@ public class BooksController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestBody String to_find) {
-        System.out.println(to_find);
-        return "redirect:/books/search";
+    public String search(Model model,
+                         @RequestParam("to_find") String to_find) {
+        model.addAttribute("books", bookService.findByStart(to_find));
+        return "/book/search";
     }
 }

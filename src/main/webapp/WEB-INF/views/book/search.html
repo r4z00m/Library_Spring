@@ -7,9 +7,19 @@
 <body>
 <form th:method="POST" th:action="@{/books/search}">
     <label for="query">Введите поисковый запрос: </label>
-    <input type="text" id="query">
+    <input type="text" id="query" name="to_find">
     <br/>
     <input type="submit" value="Искать!">
 </form>
+<p th:if="${books.isEmpty()}" th:text="'Книг не найдено'"></p>
+<div th:if="${!books.isEmpty()}">
+    <div th:each="book : ${books}">
+        <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></p>
+        <p th:if="${book.getPerson() != null}" th:text="'Книга сейчас у: ' + ${book.getPerson().getFullName()}"></p>
+        <p th:if="${book.getPerson() == null}" th:text="'Книга свободна'"></p>
+    </div>
+    <hr/>
+</div>
+<a th:href="@{/books}">Книги</a>
 </body>
 </html>

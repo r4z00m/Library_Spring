@@ -1,3 +1,3 @@
 # Library_Spring
 Spring проект библиотекаря для добавления/удаления людей и книг. Можно привязывать/отвязывать книгу человеку. Реализован функционал для поиска книг по названию и отображение книги у человека красным цветом, если он взял книгу более 10 дней назад.
-Stack: Spring, PostgreSQL, Maven, JPA, JDBC, JdbcTemplate, CRUD, Thymeleaf, HTML
+Stack: Spring Boot, PostgreSQL, Maven, JPA, JDBC, JdbcTemplate, CRUD, Thymeleaf, HTML

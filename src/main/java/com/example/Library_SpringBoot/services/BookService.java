@@ -1,9 +1,9 @@
-package app.services;
+package com.example.Library_SpringBoot.services;
 
-import app.models.Book;
-import app.models.Person;
-import app.repositories.BookRepository;
-import app.repositories.PersonRepository;
+import com.example.Library_SpringBoot.models.Book;
+import com.example.Library_SpringBoot.models.Person;
+import com.example.Library_SpringBoot.repositories.BookRepository;
+import com.example.Library_SpringBoot.repositories.PersonRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package app.models;
+package com.example.Library_SpringBoot.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
